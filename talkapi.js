@@ -1,6 +1,8 @@
 var request = require('request');
 var talkapi_key = '';
+var proxy = '';
 var options = {
+  proxy: proxy,
   url: 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk',
   json: true
 };

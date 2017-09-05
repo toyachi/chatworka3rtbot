@@ -2,7 +2,9 @@ var request = require('request');
 var room_id = '';
 var cwapi_key = '';
 var bot_id = '';
+var proxy = '';
 var options = {
+  proxy: proxy,
   url: 'https://api.chatwork.com/v2/rooms/'+room_id+'/messages',
   headers: {
     'X-ChatWorkToken': cwapi_key
@@ -12,6 +14,7 @@ var options = {
 
 var cwapi = new Object();
 
+cwapi.room_id = room_id;
 cwapi.getmsg = function(callback){
   request.get(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -28,7 +31,7 @@ cwapi.getmsg = function(callback){
 }
 
 cwapi.sendmsg = function(msg){
-//  msg = '[rp aid=1551265 to=81551305-953938533519720448] とやさん';
+  console.log('cwapi.sendmsg');
   var form = { body: msg };
   options.form = form;
   request.post(options, function (error, response, body) {
