@@ -1,5 +1,4 @@
 'use strict';
-var fs = require("fs");
 var cwapi = require('./cwapi.js');
 var talkapi = require('./talkapi.js');
 var sendtime = new Date();
