@@ -1,8 +1,7 @@
 var request = require('request');
-var talkapi_key = '';
-var proxy = '';
+var _conf = require('./config.js');
 var options = {
-  proxy: proxy,
+  proxy: _conf._proxy,
   url: 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk',
   json: true
 };
@@ -10,7 +9,7 @@ var talkapi = new Object();
 
 talkapi.sendmsg = function(msg,callback){
   var form = {
-          apikey: talkapi_key,
+          apikey: _conf._talk._apikey,
           query: msg
       };
   options.form = form;
@@ -18,7 +17,7 @@ talkapi.sendmsg = function(msg,callback){
   request.post(options, function (error, response, body) {
     var botmsg = '';
     if (!error && body.status == 0) {
-      botmsg = body.results[0].reply;
+      botmsg = _conf._eow(msg, body.results[0].reply);
     }else if (!error && body.status == 2000) {
       botmsg = '・・・|-)';
     }else{

@@ -1,27 +1,23 @@
 var request = require('request');
-var room_id = '';
-var cwapi_key = '';
-var bot_id = '';
-var proxy = '';
+var _conf = require('./config.js');
 var options = {
-  proxy: proxy,
-  url: 'https://api.chatwork.com/v2/rooms/'+room_id+'/messages',
+  proxy: _conf._proxy,
+  url: 'https://api.chatwork.com/v2/rooms/'+_conf._cw._rid+'/messages',
   headers: {
-    'X-ChatWorkToken': cwapi_key
+    'X-ChatWorkToken': _conf._cw._apikey
   },
   json: true
 };
 
 var cwapi = new Object();
 
-cwapi.room_id = room_id;
 cwapi.getmsg = function(callback){
   request.get(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       for (var i=0; i<body.length; i++) {
-        if (body[i].account.account_id == bot_id) {
+        if (body[i].account.account_id == _conf._cw._botid) {
           body.splice(i--, 1);
-        }  
+        }
       }
       callback(body);
     }else if (!error && !response.statusCode == 204){
