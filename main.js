@@ -25,4 +25,4 @@ setInterval( function() {
     cwapi.sendmsg(_conf._constmsg());
     sendtime = new Date();
   };
-},5000);
+},6500);
