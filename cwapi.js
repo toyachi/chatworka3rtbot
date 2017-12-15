@@ -27,7 +27,6 @@ cwapi.getmsg = function(callback){
 }
 
 cwapi.sendmsg = function(msg){
-  console.log('cwapi.sendmsg');
   var form = { body: msg };
   options.form = form;
   request.post(options, function (error, response, body) {
