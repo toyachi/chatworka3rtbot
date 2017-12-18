@@ -8,21 +8,9 @@ var _conf = {
   _talk : {
     _apikey : ''
   },
-  _constmsg : function(){
-    var msgArr = [
-      '無視しないで'
-    ];
-    return msgArr[Math.floor(Math.random() * msgArr.length)];
-  },
-  _provocativemsg : function(){
-    var msgArr = [
-      'お前、見込みあり'
-    ];
-    return msgArr[Math.floor(Math.random() * msgArr.length)];
-  },
   _eow : function(msg,res){
     var eowArr = [
-      'にゃ'
+      'ニャ'
     ];
     var repeowArr = [
       'です',
